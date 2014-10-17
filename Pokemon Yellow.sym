@@ -1,0 +1,61 @@
+;debug symbols for Pokemon Yellow
+
+;functions
+0000:1723 load_char(*de)
+0000:1724 load_char(*de)
+0000:1731 crlf
+0000:1747 do_linebreak
+0000:174F do_inserts
+0000:17C7 insert_player
+0000:17CD insert_rival
+0000:17DF insert_pc
+0000:17EB insert_poke
+0000:17E5 insert_rocket
+0000:17D9 insert_tm
+0000:17D3 insert_trainer
+0000:1882 whitespace
+0000:187B dlg_end
+0000:18A3 scroll_large
+0000:18D1 whitespace2
+0000:1919 load_dialogue
+
+0000:38c8 advance_text ;3907
+
+;variables
+0000:1881 something_important
+0000:D157 player_name
+0000:D162 player_num_poke
+0000:D163 player_slot1
+0000:D164 player_slot2
+0000:D165 player_slot3
+0000:D166 player_slot4
+0000:D167 player_slot5
+0000:D168 player_slot6y
+0000:D2B6 poke_nickname1
+0000:D2F8 pokedex_own
+0000:D30B pokedex_seen
+0000:D348 player_money
+0000:D349 rival_name
+
+0000:D35D map_number
+0000:D361 player_y
+0000:D362 player_x
+
+0000:D89C enemy_num_poke
+0000:D89D enemy_slot1
+
+0000:FFB1 buttons
+0000:FFB2 buttons_lastframe
+0000:FFB3 buttons_thisframe
+0000:FFB4 buttons2
+
+0000:FFD5 dlg_timer
+
+;text special characters
+;4E - cursor control
+;4F - line break
+;52 - insert player name
+;54 - insert "poké"
+;51 - scroll
+;55->4B - scroll
+;57 - text end
