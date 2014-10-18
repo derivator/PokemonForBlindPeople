@@ -6,6 +6,7 @@ Features
 -------------
 * Support for Pokémon Yellow, should be easily adaptable to Red/Blue (and Gold/Silver with some work)
 * Output displayed text in dialog
+* Output player position
 * Announce location changes
 * Supports English and German editions, support for other languages could be added
 
@@ -14,7 +15,6 @@ To-do
 * Fix text output in battles
 * Complete the list of replacements for abbreviations
 * Add more features
-  * Output player position
   * Output menu text
   * Battle information
   * Announce location of important visual elements (doors, items, etc.)

@@ -1,11 +1,11 @@
 --Pokemon For Blind People
 --See LICENSE
+dofile("settings.lua")
 
-locale = "en" --language version of the game. TODO: auto-detect
 
 gameData = {} --memory locations
 gameData["map"] = 0xD35D
-gameData["player_pos"] = 0xD361
+gameData["player_pos"] = 0xD360
 gameData["dlg"] = 0xC4B8
 gameData["dlg_load"] = 0x1968
 gameData["dlg_scroll"] = 0x1882
@@ -58,13 +58,37 @@ function scroll()
 end
 
 --announce that the player is entering a new map
-function printLocation()
+function announceLocation()
 	local b = memory.readbyte(gameData["map"])
 	print(loc["entering"] .. locations[b] .. ".")
 end
 
+--show the player's current position
+function showPosition()
+	local y = memory.readbytesigned(gameData["player_pos"])
+	local x = memory.readbytesigned(gameData["player_pos"]+1)
+	print(x .. ", " .. y)
+end
+
+function mainLoop()
+	processKeyboard()
+end
+
+keys=input.get()
+function processKeyboard()
+	local newKeys = input.get()
+	if(newKeys[settings.keys.position] and not keys[settings.keys.position]) then
+		showPosition()
+	end
+	keys=newKeys
+end
+
+
+--execute main loop every frame
+vba.registerafter(mainLoop)
+
 --hook to announce location on map change
-memory.registerwrite(gameData["map"], printLocation) 
+memory.registerwrite(gameData["map"], announceLocation) 
 
 --hooks for outputting dialog text
 memory.registerexec(gameData["dlg_load"], load)

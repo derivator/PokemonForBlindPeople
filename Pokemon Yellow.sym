@@ -6,8 +6,8 @@
 0000:1731 crlf
 0000:1747 do_linebreak
 0000:174F do_inserts
-0000:17C7 insert_player
-0000:17CD insert_rival
+0000:17C7 insert_player ;the game uses special characters to encode strings that occur often
+0000:17CD insert_rival ;these functions insert these strings when such a character appears
 0000:17DF insert_pc
 0000:17EB insert_poke
 0000:17E5 insert_rocket
