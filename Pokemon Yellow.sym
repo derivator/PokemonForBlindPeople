@@ -13,8 +13,9 @@
 0000:17E5 insert_rocket
 0000:17D9 insert_tm
 0000:17D3 insert_trainer
-0000:1882 whitespace
-0000:187B dlg_end
+0000:184A dlg_scroll
+0000:1882 dlg_clear ;clears the dialog box
+0000:187B dlg_close ;closes the dialog box
 0000:18A3 scroll_large
 0000:18D1 whitespace2
 0000:1919 load_dialogue
@@ -54,8 +55,9 @@
 ;text special characters
 ;4E - cursor control
 ;4F - line break
-;52 - insert player name
-;54 - insert "poké"
-;51 - scroll
+;52 - insert_player
+;54 - insert_poke
+;51 - dlg_clear
 ;55->4B - scroll
-;57 - text end
+;57 - dlg_close
+;58 - also triggers dlg_scroll -scripts?

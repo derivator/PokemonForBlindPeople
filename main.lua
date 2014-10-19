@@ -4,13 +4,13 @@ dofile("settings.lua")
 
 
 gameData = {} --memory locations
-gameData["map"] = 0xD35D
-gameData["player_pos"] = 0xD360
-gameData["dlg"] = 0xC4B8
-gameData["dlg_load"] = 0x1968
-gameData["dlg_scroll"] = 0x1882
-gameData["dlg_end"] = 0x187B
-gameData["text_width"] = 18
+gameData.map = 0xD35D
+gameData.player_pos = 0xD360
+gameData.dlg = 0xC4B8
+gameData.dlg_load = 0x184A
+gameData.dlg_clear = 0x1882
+gameData.dlg_close = 0x187B
+gameData.text_width = 18
 
 dofile("locale.lua")
 dofile("helpers.lua")
@@ -26,7 +26,7 @@ end
 
 --get a line of text from the dialog box at the bottom of the screen
 function getText(i)
-	return string.gsub(trim(getString(gameData["dlg"]+1 + i*(gameData["text_width"]+2) , gameData["text_width"])),"%a+%p?",replacements)..""
+	return string.gsub(trim(getString(gameData.dlg+1 + i*(gameData.text_width+2) , gameData.text_width)),"%a+%p?",replacements)..""
 end
 
 readTwoLines = true --read two lines when the dialog box first comes up
@@ -41,15 +41,15 @@ function displayStrings()
 	end
 
 	if(getText(0)=="") then
-		return false
-	else
 		return true
+	else
+		return false
 	end
 
 end
 
 function load()
-	readTwoLines = not displayStrings()
+	readTwoLines = displayStrings()
 end
 
 function scroll()
@@ -59,14 +59,14 @@ end
 
 --announce that the player is entering a new map
 function announceLocation()
-	local b = memory.readbyte(gameData["map"])
-	print(loc["entering"] .. locations[b] .. ".")
+	local b = memory.readbyte(gameData.map)
+	print(loc.entering .. locations[b] .. ".")
 end
 
 --show the player's current position
 function showPosition()
-	local y = memory.readbytesigned(gameData["player_pos"])
-	local x = memory.readbytesigned(gameData["player_pos"]+1)
+	local y = memory.readbytesigned(gameData.player_pos)
+	local x = memory.readbytesigned(gameData.player_pos+1)
 	print(x .. ", " .. y)
 end
 
@@ -83,14 +83,13 @@ function processKeyboard()
 	keys=newKeys
 end
 
-
 --execute main loop every frame
 vba.registerafter(mainLoop)
 
 --hook to announce location on map change
-memory.registerwrite(gameData["map"], announceLocation) 
+memory.registerwrite(gameData.map, announceLocation) 
 
 --hooks for outputting dialog text
-memory.registerexec(gameData["dlg_load"], load)
-memory.registerexec(gameData["dlg_end"], scroll)
-memory.registerexec(gameData["dlg_scroll"], scroll)
+memory.registerexec(gameData.dlg_load, load)
+memory.registerexec(gameData.dlg_close, scroll)
+memory.registerexec(gameData.dlg_clear, scroll)

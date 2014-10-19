@@ -16,10 +16,10 @@ trans[0xC4] = 0xF6 -- ö
 trans[0xC5] = 0xFC -- ü
 
 --some memory locations are different in the german version
-gameData["dlg_load"] = 0x196D
-gameData["dlg_scroll"] = 0x1887
-gameData["dlg_end"] = 0x1880
-gameData["map"] = 0xD362
+gameData.dlg_load = 0x196D
+gameData.dlg_clear = 0x1887
+gameData.dlg_close = 0x1880
+gameData.map = 0xD362
 
 --special thanks to Thomas for translation
 locations[000]="Alabastia"

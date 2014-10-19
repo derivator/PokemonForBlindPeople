@@ -5,14 +5,14 @@ function PtoASCII(c)
 	end
 	
 	--most characters are shifted ascii
-	if c >= 0xF6 then
+	if c >= 0xF6 then --number characters
 		return c-0xC6
 	end	
 
-	if c >= 0xA0 then
+	if c >= 0xA0 then --lower case letters
 		return c-63
 	end
-	if c >= 0x80 then
+	if c >= 0x80 then --upper case letters
 		return c-63
 	end
 	
@@ -45,4 +45,12 @@ end
 function printPC()
 	local i = memory.getregister("pc")
 	print(string.format("%x",i))
+end
+
+--print the complete content of the dialog box
+function dumpDialog(title)
+	local s = getString(gameData.dlg+1 + 0*(gameData.text_width+2) , gameData.text_width)
+	s = s .. getString(gameData.dlg+1 + 2*(gameData.text_width+2) , gameData.text_width)
+	print(title)
+	print(s)
 end
